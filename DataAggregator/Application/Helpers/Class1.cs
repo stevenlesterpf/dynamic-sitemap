@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataAggregator.Helper
+namespace DataAggregator.Application.Helper
 {
     internal class Class1
     {
