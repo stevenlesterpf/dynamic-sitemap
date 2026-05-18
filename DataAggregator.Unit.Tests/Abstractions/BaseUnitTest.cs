@@ -5,29 +5,48 @@ namespace DataAggregator.Unit.Tests.Abstractions
     public abstract class BaseUnitTest<TTestClass, TBaseClass>
         where TTestClass : BaseUnitTest<TTestClass, TBaseClass>
     {
-        protected TBaseClass _base = default!;
-        protected Exception _exception = default!;
+        public TBaseClass _base = default!;
+        public Exception _exception = default!;
 
         protected BaseUnitTest()
         {
-            SetupClassReference();
+            SetupClassReference()
+                .GetAwaiter()
+                .GetResult();
         }
 
-        protected abstract void SetupClassReference();
-        protected abstract void ActProcessor();
+        protected abstract Task SetupClassReference();
 
-        public TTestClass Arrange<TRequest, TResult>(
-            Action<TRequest>? arrangeRequest = null,
-            Action<TResult>? arrangeResult = null)
+        public TTestClass Arrange()
         {
             return (TTestClass)this;
         }
 
-        public TTestClass Act()
+        public ArrangeContext<TTestClass, TBaseClass, TRequest, TResult> Arrange<TRequest, TResult>(
+            Action<TRequest> arrangeRequest,
+            Action<TResult>? arrangeExpected = null)
+            where TRequest : new()
+            where TResult : new()
+        {
+            var request = new TRequest();
+            arrangeRequest(request);
+
+            var expected = default(TResult?);
+            if (arrangeExpected is not null)
+            {
+                expected = new TResult();
+                arrangeExpected(expected);
+            }
+
+            return new ArrangeContext<TTestClass, TBaseClass, TRequest, TResult>(
+                (TTestClass)this, request, expected);
+        }
+
+        public TTestClass Act(Action<TBaseClass> arrangeAct)
         {
             try
             {
-                ActProcessor();
+                arrangeAct(_base);
             }
             catch (Exception ex)
             {

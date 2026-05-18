@@ -5,7 +5,7 @@ namespace DataAggregator.Application.Helper
 {
     public class DataMapper
     {
-        public static CollectionPattern Transform(AwsConfiguration config)
+        public CollectionPattern Transform(AwsConfiguration config)
         {
             return default!;
         }

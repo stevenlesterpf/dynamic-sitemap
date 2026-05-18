@@ -2,6 +2,6 @@
 {
     public class AwsConfiguration
     {
-
+        public string Test { get; set; }
     }
 }
