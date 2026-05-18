@@ -1,7 +1,7 @@
 using DataAggregator;
 
 var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddHostedService<Worker>();
+DependencyInjection.ConfigureServices(builder.Services, builder.Configuration);
 
 var host = builder.Build();
 host.Run();

@@ -1,4 +1,9 @@
 <Solution>
+  <Folder Name="/_Tests/" />
+  <Folder Name="/_Tests/Unit/">
+    <Project Path="DataAggregator.Unit.Tests/DataAggregator.Unit.Tests.csproj" Id="60dec03b-9f25-4fde-83af-a3ff97a70424" />
+    <Project Path="SitemapManager.Unit.Tests/SitemapManager.Unit.Tests.csproj" Id="a28de6d1-1004-49c7-b15f-989bc621fc32" />
+  </Folder>
   <Project Path="DataAggregator/DataAggregator.csproj" Id="a476e557-5e68-40c4-b70e-630b2891fc95" />
   <Project Path="SitemapManager/SitemapManager.csproj" Id="727ddc0c-55a5-4372-a429-1ce04834d564" />
 </Solution>
