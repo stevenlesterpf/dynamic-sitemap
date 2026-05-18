@@ -1,9 +1,5 @@
 <Solution>
   <Folder Name="/_Tests/" />
-  <Folder Name="/_Tests/Integration/">
-    <Project Path="DataAggregator.Integration.Tests/DataAggregator.Integration.Tests.csproj" Id="b1cef72f-cfc5-4430-a4fa-e9df122d20b4" />
-    <Project Path="SitemapManager.Integration.Tests/SitemapManager.Integration.Tests.csproj" Id="fd307395-b83e-461f-8ee9-0d771676e754" />
-  </Folder>
   <Folder Name="/_Tests/Unit/">
     <Project Path="DataAggregator.Unit.Tests/DataAggregator.Unit.Tests.csproj" Id="60dec03b-9f25-4fde-83af-a3ff97a70424" />
     <Project Path="SitemapManager.Unit.Tests/SitemapManager.Unit.Tests.csproj" Id="a28de6d1-1004-49c7-b15f-989bc621fc32" />
