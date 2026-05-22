@@ -8,7 +8,7 @@ namespace DataAggregator
         public static void ConfigureServices(IServiceCollection services, IConfiguration config)
         {
             services.AddHostedService<DataWorker>();
-            services.AddInfrastructure();
+            services.AddInfrastructure(config);
         }
     }
 }

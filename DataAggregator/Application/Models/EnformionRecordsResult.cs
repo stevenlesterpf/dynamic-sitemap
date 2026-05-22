@@ -5,13 +5,13 @@ namespace DataAggregator.Application.Models
     public class EnformionRecordsResult
     {
         [JsonPropertyName("data")]
-        public List<EnformionRecord> Data { get; set; } = default!;
+        public List<EnformionRecordResult> Data { get; set; } = default!;
         [JsonPropertyName("pagination")]
         public EnformionRecordsPagination Pagination { get; set; } = default!;
 
     }
 
-    public class EnformionRecord
+    public class EnformionRecordResult
     {
         [JsonPropertyName("tahoe_id")]
         public string Id { get; set; } = default!;
@@ -22,7 +22,7 @@ namespace DataAggregator.Application.Models
         [JsonPropertyName("last_modified")]
         public DateTime LastModified { get; set; }
         [JsonPropertyName("change_frequency")]
-        public string ChangeFrequence { get; set; } = default!;
+        public string ChangeFrequency { get; set; } = default!;
         [JsonPropertyName("priority")]
         public decimal Priority { get; set; } = default!;
     }

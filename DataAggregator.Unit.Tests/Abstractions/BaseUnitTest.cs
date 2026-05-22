@@ -17,8 +17,12 @@ namespace DataAggregator.Unit.Tests.Abstractions
 
         protected abstract Task SetupClassReference();
 
-        public TTestClass Arrange()
+        public TTestClass Arrange(Action? arrange = null)
         {
+            if(arrange is not null)
+            {
+                arrange();
+            }
             return (TTestClass)this;
         }
 
@@ -73,12 +77,6 @@ namespace DataAggregator.Unit.Tests.Abstractions
         public void AssertThrows<TException>(Action<TException> assertion)
             where TException : Exception
         {
-            if (_exception is not null)
-            {
-                throw new InvalidOperationException($"Expected output is defined in {nameof(Arrange)}. " +
-                    $"Did you mean to call {nameof(Assert)} instead of {nameof(AssertThrows)}?");
-            }
-
             _exception
                 .Should()
                 .NotBeNull();
