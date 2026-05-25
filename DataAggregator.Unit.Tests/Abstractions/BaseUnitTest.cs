@@ -56,12 +56,17 @@ namespace DataAggregator.Unit.Tests.Abstractions
             return (TTestClass)this;
         }
 
-        public void Assert()
+        public void Assert(Action? assertion = null)
         {
             if (_exception is not null)
             {
                 throw new InvalidOperationException($"Test method threw {_exception?.GetType().Name}. " +
                     $"Did you mean to call {nameof(AssertThrows)} instead of {nameof(Assert)}?");
+            }
+
+            if (assertion is not null)
+            {
+                assertion();
             }
         }
 
