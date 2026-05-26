@@ -1,0 +1,35 @@
+﻿services:
+  mongo:
+    image: mongo:latest
+    container_name: dynamic-sitemap-mongo
+    restart: unless-stopped
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: dynamic_sitemap
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ['CMD', 'mongosh', '--eval', "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  data-aggregator:
+    build:
+      context: .
+      dockerfile: DataAggregator/Dockerfile
+    container_name: dynamic-sitemap-data-aggregator
+    depends_on:
+      mongo:
+        condition: service_healthy
+    environment:
+      DOTNET_ENVIRONMENT: Development
+      MongoDbConfiguration__ConnectionString: mongodb://root:password@mongo:27017/?authSource=admin
+      MongoDbConfiguration__DatabaseName: dynamic_sitemap
+
+volumes:
+  mongo_data:

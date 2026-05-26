@@ -41,6 +41,6 @@ namespace DataAggregator.Application.Models
         [JsonPropertyName("last_sync")]
         public DateTime LastSync { get; set; }
         [JsonPropertyName("next_sync")]
-        public DateTime NexySync { get; set; }
+        public DateTime NextSync { get; set; }
     }
 }
